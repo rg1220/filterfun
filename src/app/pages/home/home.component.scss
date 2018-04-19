@@ -32,6 +32,18 @@
         height: 150px;
       }
 
+      .actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        background: #eee;
+
+        button {
+          padding: 10px;
+          margin: 5px;
+        }
+      }
+
       .records {
         flex: 1;
       }

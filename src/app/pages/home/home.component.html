@@ -15,6 +15,10 @@
     <div class="stats">
       <app-stats></app-stats>
     </div>
+    <div class="actions">
+      <button>Export Data</button>
+      <button>Add New Record</button>
+    </div>
     <div class="records">
       <app-records [records]="filteredRecoreds$ | async" (recordPropertyChanged)="recordPropertyChanged($event)"></app-records>
     </div>
