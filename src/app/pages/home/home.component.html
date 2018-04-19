@@ -2,7 +2,13 @@
 
   <div class="column left-column">
     <div class="filters">
-      Filters
+
+      <div class="filter">
+        <div>Filter By Status</div>
+        <div *ngFor="let status of statuses$ | async">
+          <input type="checkbox" [id]="'filter_status'+status" [checked]="(activeStatusFilters$ | async).includes(status)" (change)="filterStatus(status, $event.target.checked)" /><label [for]="'filter_status'+status">{{ status }}</label>
+        </div>
+      </div>
     </div>
   </div>
   <div class="column right-column">

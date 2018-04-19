@@ -14,10 +14,20 @@ export class HomeComponent implements OnInit {
 
   public records$: Observable<Record[]>;
   public filteredRecoreds$: Observable<Record[]>;
+  public statuses$: Observable<string[]>;
+  public activeStatusFilters$: Observable<string[]>;
 
   constructor(private recordsService: RecordsService) {
     this.records$ = this.recordsService.getRecords();
-    this.filteredRecoreds$ = this.records$.map(data => data);
+    this.activeStatusFilters$ = this.recordsService.getActiveStatusFilters();
+    this.filteredRecoreds$ = this.recordsService.getFilteredRecords();
+
+    this.statuses$ = this.records$.map((records: Record[]) => {
+      return Object.keys(records.map(record => record.status).reduce((current: any, status: string) => {
+        current[status] = true;
+        return current;
+      }, {}));
+    });
   }
 
   ngOnInit() {
@@ -26,6 +36,10 @@ export class HomeComponent implements OnInit {
 
   recordPropertyChanged({ record, key, value }) {
     this.recordsService.updateRecordProperty(record, key, value);
+  }
+
+  filterStatus(status, value) {
+    this.recordsService.toggleStatusFilter(status, value);
   }
 
 }

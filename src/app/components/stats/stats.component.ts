@@ -18,7 +18,7 @@ export class StatsComponent implements OnInit {
   public newRecords$: Observable<Number>;
 
   constructor(private recordsService: RecordsService) {
-    this.filteredRecoreds$ = this.recordsService.getRecords();
+    this.filteredRecoreds$ = this.recordsService.getFilteredRecords();
 
     this.uniqueProjectOwners$ = this.filteredRecoreds$.map((records: Record[]) => {
       const ownersMap = records.map((record: Record) => record.projectOwner).reduce<any>((obj: any, projectOwner: string) => {

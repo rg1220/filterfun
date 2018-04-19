@@ -5,6 +5,7 @@ import { MockData } from '../../models/mock-data';
 
 export enum RecordActionTypes {
   UPDATE_RECORD_PROPERTY = '[RECORD] UPDATE_RECORD_PROPERTY',
+  TOGGLE_STATUS_FILTER = '[RECORD] TOGGLE_STATUS_FILTER',
 }
 
 export class UpdateRecordProperty implements Action {
@@ -13,15 +14,24 @@ export class UpdateRecordProperty implements Action {
   constructor(public payload: { record: Record, key: string, value: any }) {}
 }
 
+export class ToggleStatusFilter implements Action {
+  readonly type = RecordActionTypes.TOGGLE_STATUS_FILTER;
+
+  constructor(public payload: { status: string, value: any }) {}
+}
+
 export type RecordsActionsUnion =
-  | UpdateRecordProperty;
+  | UpdateRecordProperty
+  | ToggleStatusFilter;
 
 export interface RecordsStateInterface {
   records: Record[];
+  statusFilter: string[];
 }
 
 export const initialState: RecordsStateInterface = {
-  records: MockData.GetData()
+  records: MockData.GetData(),
+  statusFilter: []
 };
 
 export function recordsReducer(state: RecordsStateInterface = initialState, action: RecordsActionsUnion) {
@@ -42,6 +52,17 @@ export function recordsReducer(state: RecordsStateInterface = initialState, acti
       return {
         ...state,
         records: records
+      };
+    case RecordActionTypes.TOGGLE_STATUS_FILTER:
+      const statusFilter = state.statusFilter.filter(status => status !== action.payload.status);
+
+      if (action.payload.value) {
+        statusFilter.push(action.payload.status);
+      }
+
+      return {
+        ...state,
+        statusFilter
       };
     default:
       return state;
