@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Record } from '../../models/record';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-records',
@@ -21,6 +22,15 @@ export class RecordsComponent implements OnInit {
   }
 
   recordChanged(record, key, value) {
+    switch (key) {
+      case 'modified':
+      case 'created':
+        value = moment(value, 'MM-DD-YYYY');
+        break;
+      default:
+        break;
+    }
+
     this.recordPropertyChanged.emit({
       record: record,
       key: key,

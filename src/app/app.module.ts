@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { MomentModule } from 'ngx-moment';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -29,6 +29,7 @@ import {environment} from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MomentModule,
     StoreModule.forRoot({ recordsState: recordsReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

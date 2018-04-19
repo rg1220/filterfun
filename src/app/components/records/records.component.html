@@ -12,12 +12,19 @@
     </tr>
     <tr *ngFor="let record of records;trackBy: trackRecordsBy">
       <td><input [ngModel]="record.title" (ngModelChange)="recordChanged(record, 'title', $event)" /></td>
-      <td><input [(ngModel)]="record.division" (ngModelChange)="recordChanged(record, 'division', $event)" /></td>
-      <td><input [(ngModel)]="record.projectOwner" (ngModelChange)="recordChanged(record, 'projectOwner', $event)" /></td>
-      <td><input type="number" [(ngModel)]="record.budget" (ngModelChange)="recordChanged(record, 'budget', $event)" /></td>
-      <td><input [(ngModel)]="record.status" (ngModelChange)="recordChanged(record, 'status', $event)" /></td>
-      <td><input [(ngModel)]="record.created" /></td>
-      <td><input [(ngModel)]="record.modified" /></td>
+      <td><input [ngModel]="record.division" (ngModelChange)="recordChanged(record, 'division', $event)" /></td>
+      <td><input [ngModel]="record.projectOwner" (ngModelChange)="recordChanged(record, 'projectOwner', $event)" /></td>
+      <td class="currency">
+        <input type="number" [ngModel]="record.budget" (ngModelChange)="recordChanged(record, 'budget', $event)" />
+        <div>${{record.budget | number:'1.2-2'}}</div>
+      </td>
+      <td><input [ngModel]="record.status" (ngModelChange)="recordChanged(record, 'status', $event)" /></td>
+      <td>
+        <input [ngModel]="record.created | amDateFormat:'MM-DD-YYYY'" (change)="recordChanged(record, 'created', $event.target.value)" />
+      </td>
+      <td class="date">
+        <input [ngModel]="record.modified | amDateFormat:'MM-DD-YYYY'" (change)="recordChanged(record, 'modified', $event.target.value)" />
+      </td>
       <td><a [routerLink]="['/']">Go!</a></td>
     </tr>
     <tr>
