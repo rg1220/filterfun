@@ -1,0 +1,38 @@
+.records {
+  table {
+    width: 100%;
+
+    border-spacing: 0px;
+    border-collapse: collapse;
+
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+
+    tr {
+      &:nth-of-type(even) {
+        background: #eee;
+      }
+
+      th {
+        text-align: left;
+        font-size: 14px;
+
+        padding: 5px;
+      }
+
+      td {
+        input {
+          background: transparent;
+          border: none;
+
+          padding: 8px;
+
+          &:active, &:focus {
+            background: #fff;
+            border: inherit;
+          }
+        }
+      }
+    }
+  }
+}

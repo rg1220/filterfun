@@ -1,0 +1,17 @@
+<div class="home">
+
+  <div class="column left-column">
+    <div class="filters">
+      Filters
+    </div>
+  </div>
+  <div class="column right-column">
+    <div class="stats">
+      <app-stats></app-stats>
+    </div>
+    <div class="records">
+      <app-records [records]="filteredRecoreds$ | async"></app-records>
+    </div>
+  </div>
+
+</div>

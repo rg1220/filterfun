@@ -1,0 +1,14 @@
+<div class="stats">
+  <div class="stat">
+    <span>{{ uniqueProjectOwners$ | async }}</span>
+    <span>Different Project Owners</span>
+  </div>
+  <div class="stat">
+    <span>${{ averageBudget$ | async | number:'1.2-2'}}</span>
+    <span>Average Budget</span>
+  </div>
+  <div class="stat">
+    <span>12</span>
+    <span>New Records</span>
+  </div>
+</div>

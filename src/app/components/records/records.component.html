@@ -1,0 +1,33 @@
+<div class="records">
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Division</th>
+      <th>Project Owner</th>
+      <th>Budget</th>
+      <th>Status</th>
+      <th>Created</th>
+      <th>Modified</th>
+    </tr>
+    <tr *ngFor="let record of records">
+      <td><input [(ngModel)]="record.title" /></td>
+      <td><input [(ngModel)]="record.division" /></td>
+      <td><input [(ngModel)]="record.projectOwner" /></td>
+      <td><input [(ngModel)]="record.budget" /></td>
+      <td><input [(ngModel)]="record.status" /></td>
+      <td><input [(ngModel)]="record.created" /></td>
+      <td><input [(ngModel)]="record.modified" /></td>
+      <td><a [routerLink]="['/']">Go!</a></td>
+    </tr>
+    <tr>
+      <td><input value="Tagtune" /></td>
+      <td><input value="Accounting" /></td>
+      <td><input value="Kevin Snyder" /></td>
+      <td><input value="$20614.14" /></td>
+      <td><input value="archived" /></td>
+      <td><input value="09/14/2015" /></td>
+      <td><input value="10/02/2015" /></td>
+      <td><a [routerLink]="['/']">Go!</a></td>
+    </tr>
+  </table>
+</div>

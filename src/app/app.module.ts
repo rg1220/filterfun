@@ -1,20 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './pages/home/home.component';
+import { HeaderComponent } from './components/header/header.component';
+import { StatsComponent } from './components/stats/stats.component';
+import { RecordsComponent } from './components/records/records.component';
+import {RecordsService} from './services/records/records.service';
+import {recordsReducer} from './store/reducers/RecordsReducer';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    HeaderComponent,
+    StatsComponent,
+    RecordsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    StoreModule.forRoot({ recordsState: recordsReducer })
   ],
-  providers: [],
+  providers: [
+    RecordsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
