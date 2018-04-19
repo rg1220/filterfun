@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Record } from '../../models/record';
-import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-records',
@@ -10,10 +9,23 @@ import {Observable} from "rxjs/Observable";
 export class RecordsComponent implements OnInit {
 
   @Input() records: Record[] = [];
+  @Output() recordPropertyChanged: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
 
   ngOnInit() {
+  }
+
+  trackRecordsBy(index, record: Record) {
+    return record.id;
+  }
+
+  recordChanged(record, key, value) {
+    this.recordPropertyChanged.emit({
+      record: record,
+      key: key,
+      value: value
+    });
   }
 
 }

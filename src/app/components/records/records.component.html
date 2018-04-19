@@ -10,12 +10,12 @@
       <th>Modified</th>
       <th></th>
     </tr>
-    <tr *ngFor="let record of records">
-      <td><input [(ngModel)]="record.title" /></td>
-      <td><input [(ngModel)]="record.division" /></td>
-      <td><input [(ngModel)]="record.projectOwner" /></td>
-      <td><input [(ngModel)]="record.budget" /></td>
-      <td><input [(ngModel)]="record.status" /></td>
+    <tr *ngFor="let record of records;trackBy: trackRecordsBy">
+      <td><input [ngModel]="record.title" (ngModelChange)="recordChanged(record, 'title', $event)" /></td>
+      <td><input [(ngModel)]="record.division" (ngModelChange)="recordChanged(record, 'division', $event)" /></td>
+      <td><input [(ngModel)]="record.projectOwner" (ngModelChange)="recordChanged(record, 'projectOwner', $event)" /></td>
+      <td><input type="number" [(ngModel)]="record.budget" (ngModelChange)="recordChanged(record, 'budget', $event)" /></td>
+      <td><input [(ngModel)]="record.status" (ngModelChange)="recordChanged(record, 'status', $event)" /></td>
       <td><input [(ngModel)]="record.created" /></td>
       <td><input [(ngModel)]="record.modified" /></td>
       <td><a [routerLink]="['/']">Go!</a></td>

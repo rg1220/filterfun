@@ -24,4 +24,8 @@ export class HomeComponent implements OnInit {
     // this.recordsService.loadRecords();
   }
 
+  recordPropertyChanged({ record, key, value }) {
+    this.recordsService.updateRecordProperty(record, key, value);
+  }
+
 }

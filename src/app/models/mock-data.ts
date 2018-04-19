@@ -250,11 +250,13 @@ export class MockData {
     }
   ];
 
+  private static id = 0;
+
   public static GetData(): Record[] {
     return MockData.data.map(({title, division, project_owner, budget, status, created, modified}) => {
       const createdDate = moment(created, 'MM/DD/YYYY');
       const modifiedDate = moment(modified, 'MM/DD/YYYY');
-      return new Record(title, division, project_owner, budget, status, createdDate, modifiedDate);
+      return new Record(++MockData.id, title, division, project_owner, budget, status, createdDate, modifiedDate);
     });
   }
 
